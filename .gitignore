@@ -1,2 +1,7 @@
 venv
-Back\__pycache__
+Milon\Back\server\__pycache__
+Milon\Back\server\models
+Milon\Back\server\routes\__pycache__
+Back/server/__pycache__/app.cpython-310.pyc
+Back/server/__pycache__/database.cpython-310.pyc
+Back/server/models/__pycache__/mila.cpython-310.pyc
