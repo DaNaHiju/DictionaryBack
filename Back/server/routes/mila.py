@@ -45,3 +45,38 @@ async def get_mila_data(id):
     if mila:
         return ResponseModel(mila, "Mila data retrieved successfully")
     return ErrorResponseModel("An error occurred.", 404, "Mila doesn't exist.")
+
+# Upadate mila:
+
+
+@router.put("/{id}")
+async def update_mila_data(id: str, req: UpdateMilaModel = Body(...)):
+    req = {k: v for k, v in req.dict().items() if v is not None}
+    mila = await update_mila(id, req)
+    if mila:
+        return ResponseModel(
+            "Mila with ID: {} update is successful".format(id),
+            "Mila updated successfully",
+
+        )
+
+    return ErrorResponseModel(
+        "An error occurred",
+        404,
+        "There was an error updating the mila data.",
+    )
+
+# Delete mila:
+
+
+@router.delete("/{id}", response_description="Mila data deleted from data base")
+async def delete_mila_data(id: str):
+    mila = await delete_mila(id)
+    if mila:
+        return ResponseModel(
+            "Mila with ID: {} removed".format(id),
+            "Mila deleted succesfully"
+        )
+    return ErrorResponseModel(
+        "An error occurred", 404, "Mila with id {0} doesn't exist".format(id)
+    )

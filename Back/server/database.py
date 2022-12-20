@@ -1,4 +1,4 @@
-from server.models.mila import MilaSchema
+
 # Driver for mongodb
 import motor.motor_asyncio
 from bson.objectid import ObjectId
