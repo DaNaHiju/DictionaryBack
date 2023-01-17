@@ -1,5 +1,6 @@
 
 # Driver for mongodb
+
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 
@@ -49,6 +50,18 @@ async def add_mila(mila_data: dict) -> dict:
 # Update mila
 
 
+# async def update_mila(id: str, data: dict):
+#     # Return false in case an empty request is sent
+#     if len(data) < 1:
+#         return False
+#     mila = await collection.find_one({"_id": ObjectId(id)})
+#     if mila:
+#         updated_mila = await collection.update_one(
+#             {"_id", ObjectId(id)}, {"$set": data}
+#         )
+#         if updated_mila:
+#             return True
+#         return False
 async def update_mila(id: str, data: dict):
     # Return false in case an empty request is sent
     if len(data) < 1:
@@ -56,9 +69,9 @@ async def update_mila(id: str, data: dict):
     mila = await collection.find_one({"_id": ObjectId(id)})
     if mila:
         updated_mila = await collection.update_one(
-            {"_id", ObjectId(id)}, {"$set": data}
+            {"_id": ObjectId(id)}, {"$set": data}
         )
-        if updated_mila:
+        if updated_mila.modified_count:
             return True
         return False
 
